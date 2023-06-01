@@ -1,0 +1,52 @@
+<!-- Styles -->
+<style>
+  #chartdiv {
+    width: 100%;
+    height: 400;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  </style>
+  
+  <!-- Resources -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+  
+  <!-- Chart code -->
+  <script src="statistics.js"></script>
+  
+  <!-- HTML -->
+<h1 style="text-align:center">Choose a cuisine to get more details about it</h1>
+<p style="text-align:center">These are the 20 most represented types of restaurants in our overall dataset we are studying</p>
+
+<select name="cuisine-selector" id="cuisine-selector">
+  <option value="">--Please choose a type of cuisine--</option>
+  <option value="Europeenne">European</option>
+  <option value="Francaise">French</option>
+  <option value="Italienne">Italian</option>
+  <option value="Suisse">Swiss</option>
+  <option value="Mediterraneenne">Mediterranean</option>
+  <option value="Pizza">Pizza</option>
+  <option value="europe_centrale">Central Europe</option>
+  <option value="Asiatique">Asian</option>
+  <option value="Bar">Bar</option>
+  <option value="Fruits_de_mer_&_Poisson">Seafood & Fish</option>
+  <option value="Internationale">International</option>
+  <option value="Italie_du_Nord">Northern Italy</option>
+  <option value="Lombarde">Lombardy</option>
+  <option value="Cafe">Cafe</option>
+  <option value="Saine">Healthy</option>
+  <option value="Pub">Pub</option>
+  <option value="Americaine">American</option>
+  <option value="Japonaise">Japanese</option>
+  <option value="Chinoise">Chinese</option>
+  <option value="Barbecue_Grillades">Barbecue & Grill</option>
+</select>
+<div id="chartdiv"></div>
+
