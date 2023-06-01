@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
+    var map = L.map('map').setView([46.5196535, 6.6322734], 17);
+    var heatLayer;
+
     window.onload = function() {
         updateRestaurantStats();
     };
-    var heatLayer;
-    var map = L.map('map').setView([46.5196535, 6.6322734], 17);
 
     // Cluster bespoke display based on size
     var markers = L.markerClusterGroup({
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             };
             // Empty heat map at first
-            heatLayer = L.heatLayer(heatData)
+            heatLayer = L.heatLayer(heatData, min=1, max=5)
             map.addLayer(heatLayer)
             // Add the clusters to the map
             map.addLayer(markers);
@@ -488,6 +488,4 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     map.on('moveend', updateRestaurantStats);
-
-    
 });
