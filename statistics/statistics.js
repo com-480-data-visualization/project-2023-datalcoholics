@@ -1,22 +1,35 @@
 function onChange() {
     const e = document.getElementById("cuisine-selector");
-    //console.log(e.value)
 
     fetch(`/data/cuisine_reviews/aggregated/${e.value}_reviews.json`)
-    .then((response) => response.json())
+    .then((response) =>  response.json())
     .then((json) => {
-
-        var data = json;
+      console.log(json)
         var filtered = [];
         const dateBound = new Date('2014-01-01');
-        for (let i = 0; i < data.length; i++) {
-            const dateToCheck = new Date(data[i].review_date);
+        for (let i = 0; i < json.length; i++) {
+            const dateToCheck = new Date(json[i].review_date);
             if (dateToCheck > dateBound){
-                filtered.push(data[i]);
+                filtered.push(json[i]);
             }
         } 
         setTimeData(filtered);
     });
+
+    fetch(`/data/cuisine_users/age/${e.value}_ages.json`)
+    .then((response) => response.json())
+    .then((json) => {
+      setPieChart1Data(json)
+    });
+
+    fetch(`/data/cuisine_users/comments/${e.value}_comments.json`)
+    .then((response) => response.json())
+    .then((json) => {
+      setPieChart2Data(json)
+    });
+
+
+
 }
 
 function setTimeChart(){
@@ -144,54 +157,16 @@ function setTimeData(data){
 document.addEventListener("DOMContentLoaded", function() {
   var e = document.getElementById("cuisine-selector");
   e.onchange = onChange;
-  e.selectedIndex = 0;
-
-  console.log("here^")
+  e.selectedIndex = 1;
+  onChange();
 });
 
 
 
 am5.ready(function() {
     setTimeChart();
-    
-    const emtpyTimedata = [
-        {"review_date":"2022-01-28","count":0,"avg":0},
-        {"review_date":"2022-02-28","count":0,"avg":0},
-        {"review_date":"2022-03-28","count":0,"avg":0},
-        {"review_date":"2022-04-28","count":0,"avg":0},
-        {"review_date":"2022-05-28","count":0,"avg":0},
-        {"review_date":"2022-06-28","count":0,"avg":0},
-        {"review_date":"2022-07-28","count":0,"avg":0},
-        {"review_date":"2022-08-28","count":0,"avg":0},
-        {"review_date":"2022-09-28","count":0,"avg":0},
-        {"review_date":"2022-10-28","count":0,"avg":0},
-        {"review_date":"2022-11-28","count":0,"avg":0},
-        {"review_date":"2022-12-28","count":0,"avg":0},
-        
-    ];
-
-    setTimeData(emtpyTimedata);
-
     setPieChart1();
     setPieChart2();
-
-    console.log("here")
-
-
-    const pieData = [
-      {
-        category:  "35-49",
-        value: 14316
-      }
-  ];
-
-      
-
-    setPieChart1Data(pieData);
-    setPieChart2Data(pieData);
-
-
-
 
 }); // end am5.ready()
 
@@ -203,13 +178,14 @@ function setPieChart1(){
   ]);
   var chart = root.container.children.push(
     am5percent.PieChart.new(root, {
-      endAngle: 270
+      endAngle: 270,
+      radius: 120
     })
   );
   this.pieSeries1 = chart.series.push(
     am5percent.PieSeries.new(root, {
-      valueField: "value",
-      categoryField: "category",
+      valueField: "age",
+      categoryField: "index",
       endAngle: 270
     })
   );
@@ -231,19 +207,17 @@ function setPieChart2(){
   ]);
   var chart = root.container.children.push(
     am5percent.PieChart.new(root, {
-      endAngle: 270
+      endAngle: 270,
+      radius: 120,
+      inside: true
     })
   );
   this.pieSeries2 = chart.series.push(
     am5percent.PieSeries.new(root, {
-      valueField: "value",
-      categoryField: "category",
-      endAngle: 270
+      valueField: "count",
+      categoryField: "label",
     })
   );
-  this.pieSeries2.states.create("hidden", {
-    endAngle: -90
-  });
 }
 
 function setPieChart2Data(data){
