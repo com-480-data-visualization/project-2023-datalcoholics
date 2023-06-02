@@ -1,0 +1,29 @@
+#timechart {
+    width: 100%;
+    height: 400px;
+}
+
+#piechart1 {
+    width: 100%;
+    height: 200px;
+}
+
+#piechart2 {
+    width: 100%;
+    height: 200px;
+}
+
+select {
+    display: block;
+    margin: 0 auto;
+}
+
+.center {
+    margin: auto;
+    width: 90%;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}

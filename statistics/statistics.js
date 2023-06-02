@@ -1,6 +1,6 @@
 function onChange() {
     const e = document.getElementById("cuisine-selector");
-    console.log(e.value)
+    //console.log(e.value)
 
     fetch(`/data/cuisine_reviews/aggregated/${e.value}_reviews.json`)
     .then((response) => response.json())
@@ -15,15 +15,15 @@ function onChange() {
                 filtered.push(data[i]);
             }
         } 
-        setData(filtered);
+        setTimeData(filtered);
     });
 }
 
-function setChart(){
+function setTimeChart(){
         
         // Create root element
         // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-        var root = am5.Root.new("chartdiv");
+        var root = am5.Root.new("timechart");
         
         // Set themes
         // https://www.amcharts.com/docs/v5/concepts/themes/
@@ -100,7 +100,7 @@ function setChart(){
           valueYField: "avg",
           valueXField: "review_date",
           tooltip:am5.Tooltip.new(root, {
-            labelText:"Average: {valueY}"
+            labelText:"Average: {valueY.formatNumber('#.00')}/5"
           })  
         }));
         
@@ -131,7 +131,7 @@ function setChart(){
         this.chart.appear(1000, 100);
 }
 
-function setData(data){
+function setTimeData(data){
     this.ratingSeries.data.setAll(data);
     this.averageSeries.data.setAll(data);
     this.xAxis.data.setAll(data);
@@ -141,20 +141,20 @@ function setData(data){
     this.ratingSeries.appear(500);
 }
 
-
-
 document.addEventListener("DOMContentLoaded", function() {
   var e = document.getElementById("cuisine-selector");
   e.onchange = onChange;
   e.selectedIndex = 0;
+
+  console.log("here^")
 });
 
 
 
 am5.ready(function() {
-    setChart();
+    setTimeChart();
     
-    var data = [
+    const emtpyTimedata = [
         {"review_date":"2022-01-28","count":0,"avg":0},
         {"review_date":"2022-02-28","count":0,"avg":0},
         {"review_date":"2022-03-28","count":0,"avg":0},
@@ -170,6 +170,83 @@ am5.ready(function() {
         
     ];
 
-    setData(data);
+    setTimeData(emtpyTimedata);
+
+    setPieChart1();
+    setPieChart2();
+
+    console.log("here")
+
+
+    const pieData = [
+      {
+        category:  "35-49",
+        value: 14316
+      }
+  ];
+
+      
+
+    setPieChart1Data(pieData);
+    setPieChart2Data(pieData);
+
+
+
 
 }); // end am5.ready()
+
+
+function setPieChart1(){
+  var root = am5.Root.new("piechart1");
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+  var chart = root.container.children.push(
+    am5percent.PieChart.new(root, {
+      endAngle: 270
+    })
+  );
+  this.pieSeries1 = chart.series.push(
+    am5percent.PieSeries.new(root, {
+      valueField: "value",
+      categoryField: "category",
+      endAngle: 270
+    })
+  );
+  this.pieSeries1.states.create("hidden", {
+    endAngle: -90
+  });
+}
+
+function setPieChart1Data(data){
+  console.log(data)
+  this.pieSeries1.data.setAll(data);
+  this.pieSeries1.appear(1000, 100);
+}
+
+function setPieChart2(){
+  var root = am5.Root.new("piechart2");
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+  var chart = root.container.children.push(
+    am5percent.PieChart.new(root, {
+      endAngle: 270
+    })
+  );
+  this.pieSeries2 = chart.series.push(
+    am5percent.PieSeries.new(root, {
+      valueField: "value",
+      categoryField: "category",
+      endAngle: 270
+    })
+  );
+  this.pieSeries2.states.create("hidden", {
+    endAngle: -90
+  });
+}
+
+function setPieChart2Data(data){
+  this.pieSeries2.data.setAll(data);
+  this.pieSeries2.appear(1000, 100);
+}
