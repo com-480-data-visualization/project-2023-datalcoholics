@@ -106,11 +106,7 @@ We also plan to make the website responsive, but this may change if we do not ha
 
 ## <a name="milestone-3"></a>Milestone 3 (4th June, 5pm)
 
-
-
-
-## Late policy
-
-- < 24h: 80% of the grade for the milestone
-- < 48h: 70% of the grade for the milestone
+Website : https://areisde.github.io/datalcoholics.io/
+Screen cast :
+Process book : 
 
