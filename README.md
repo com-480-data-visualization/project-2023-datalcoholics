@@ -107,6 +107,8 @@ We also plan to make the website responsive, but this may change if we do not ha
 ## <a name="milestone-3"></a>Milestone 3 (4th June, 5pm)
 
 Website : https://areisde.github.io/datalcoholics.io/
+
 Screen cast :
+
 Process book : 
 
