@@ -18,8 +18,25 @@ select {
     width: 90%;
 }
 
+
+
 .flex-container {
-    display: flex;
+    /*display: flex;
     flex-direction: row;
     align-items:center;
+    justify-content: space-between;*/
+    text-align: center;
+}
+
+#pi1_container, #pi2_container {
+    display: inline-block;
+    width: calc(50% - 5px);
+}
+
+@media (max-width: 1000px) {
+
+    #pi1_container, #pi2_container {
+        display: block;
+        width: 100%;
+    }
 }

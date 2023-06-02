@@ -1,10 +1,12 @@
+document.addEventListener("DOMContentLoaded", function() {
+
 function onChange() {
     const e = document.getElementById("cuisine-selector");
 
     fetch(`/data/cuisine_reviews/aggregated/${e.value}_reviews.json`)
     .then((response) =>  response.json())
     .then((json) => {
-      console.log(json)
+      //console.log(json)
         var filtered = [];
         const dateBound = new Date('2014-01-01');
         for (let i = 0; i < json.length; i++) {
@@ -176,26 +178,37 @@ function setPieChart1(){
   root.setThemes([
     am5themes_Animated.new(root)
   ]);
+
   var chart = root.container.children.push(
     am5percent.PieChart.new(root, {
       endAngle: 270,
       radius: 120
     })
   );
+
   this.pieSeries1 = chart.series.push(
     am5percent.PieSeries.new(root, {
       valueField: "age",
       categoryField: "index",
-      endAngle: 270
+      endAngle: 270,
+      alignLabels : true
     })
   );
+
   this.pieSeries1.states.create("hidden", {
     endAngle: -90
+  });
+
+  this.pieSeries1.labels.template.setAll({
+    text: "{category}",
+    textType: "circular",
+    inside: true,
+    radius: 10
   });
 }
 
 function setPieChart1Data(data){
-  console.log(data)
+  //console.log(data)
   this.pieSeries1.data.setAll(data);
   this.pieSeries1.appear(1000, 100);
 }
@@ -224,3 +237,11 @@ function setPieChart2Data(data){
   this.pieSeries2.data.setAll(data);
   this.pieSeries2.appear(1000, 100);
 }
+
+let close = document.getElementById("close_general_stats");
+
+close.addEventListener("click", function(){
+  document.getElementById("general_stats_container ").style.display = "none";
+});
+
+});
