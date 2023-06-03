@@ -155,10 +155,18 @@ function setTimeData(data){
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+  
   var e = document.getElementById("cuisine-selector");
   e.onchange = onChange;
   e.selectedIndex = 1;
   onChange();
+  e.selectedIndex = 0;
+
+  // CLosing action
+  let close = document.getElementById("close_general_stats");
+  close.addEventListener("click", function(){
+    document.getElementById("general_stats_container").style.display = "none";
+  });
 });
 
 
@@ -180,7 +188,7 @@ function setPieChart1(){
   var chart = root.container.children.push(
     am5percent.PieChart.new(root, {
       endAngle: 270,
-      radius: 120
+      radius: 100
     })
   );
 
@@ -199,9 +207,7 @@ function setPieChart1(){
 
   this.pieSeries1.labels.template.setAll({
     text: "{category}",
-    textType: "circular",
-    inside: true,
-    radius: 10
+    textType: "circular"
   });
 }
 
@@ -219,7 +225,7 @@ function setPieChart2(){
   var chart = root.container.children.push(
     am5percent.PieChart.new(root, {
       endAngle: 270,
-      radius: 120,
+      radius: 100,
       inside: true
     })
   );
@@ -229,6 +235,10 @@ function setPieChart2(){
       categoryField: "label",
     })
   );
+  this.pieSeries2.labels.template.setAll({
+    text: "{category}",
+    textType: "circular"
+  });
 }
 
 function setPieChart2Data(data){
