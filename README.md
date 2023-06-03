@@ -106,9 +106,13 @@ We also plan to make the website responsive, but this may change if we do not ha
 
 ## <a name="milestone-3"></a>Milestone 3 (4th June, 5pm)
 
-Website : https://areisde.github.io/datalcoholics.io/
+- To run the website locally, open the `website` folder and run the following command : `python -m http.server`.
+- The `data_preprocessing.ipynb` file is the notebook where all the pre-computing was done for the statistics page.
+- Please find below links to our project deliverables :
 
-Screen cast :
+ - Website : https://areisde.github.io/datalcoholics.io/
 
-Process book : 
+ - Screen cast :
+
+ - Process book : 
 
