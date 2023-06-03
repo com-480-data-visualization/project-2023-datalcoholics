@@ -166,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let close = document.getElementById("close_general_stats");
   close.addEventListener("click", function(){
     document.getElementById("general_stats_container").style.display = "none";
+    document.getElementById("header").style.display = "block";
   });
 });
 
