@@ -134,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
             complete: function(results) {
                 // Store CSV data as an array of objects
                 var data = results.data;
+                var values = [];
                 for (var i in data) {
                     var row = data[i];
                     // Validate latitude and longitude values
@@ -144,12 +145,14 @@ document.addEventListener("DOMContentLoaded", function() {
                         continue; // Skip this row and proceed to the next iteration
                     } else {
                         if (filter !== "no_filter"){
+                            values.push(parseFloat(row[filter]));
                             heatData.push([latitude, longitude, parseFloat(row[filter])])
                         }
                     }
                 };
                 // update heat map
-                updateHeatMap(heatData);
+                updateHeatMap(heatData,values);
+                console.log(heatLayer);
             }
         });
     });
@@ -337,6 +340,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+        console.log(reviews);
         updateRatingDistribution(ratings);
         updateCuisineRanking(cuisines);
         updateTopInfo(reviews);
@@ -474,18 +478,49 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+
         var mostPop = document.getElementById("most_popular");
         var mostPopNumber = document.getElementById("most_popular_reviews");
         mostPop.textContent = maxReviewsRestaurant;
         mostPopNumber.textContent = maxReviews;
     }
 
-    function updateHeatMap(data){
+    function updateHeatMap(data,values){
+        //meanValue = mean(values);
+        //stdValue = std(values);
+        maxVal = Math.max(...values)/10;
+        //set the max of heat map to the max of the values
+        heatLayer.options.max = maxVal;
+        //set the min of heat map to the min of the values
+        // normalize values of data
+        for (var i = 0; i < data.length; i++){
+            data[i][2] = data[i][2]/10;
+        }
         var newHeatLayer = L.heatLayer(data);
+        newHeatLayer.options.max = maxVal;
         map.removeLayer(heatLayer);
         heatLayer = newHeatLayer;
         map.addLayer(heatLayer);
     }
+
+    // // compute mean of an array
+    // function mean(array){
+    //     var sum = 0;
+    //     for (var i = 0; i < array.length; i++){
+    //         sum += array[i];
+    //     }
+    //     return sum/array.length;
+    // }
+    // // Compute standard deviation of an array
+    // function std(array){
+    //     var meanVal = mean(array);
+    //     var sum = 0;
+    //     for (var i = 0; i < array.length; i++){
+    //         sum += Math.pow(array[i]-meanVal,2);
+    //     }
+    //     return Math.sqrt(sum/array.length);
+    // }
+
 
     map.on('moveend', updateRestaurantStats);
 
