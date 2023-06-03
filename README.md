@@ -113,7 +113,7 @@ We also plan to make the website responsive, but this may change if we do not ha
 
  - Website : https://areisde.github.io/datalcoholics.io/
 
- - Screen cast : [here](https://github.com/com-480-data-visualization/project-2023-datalcoholics/blob/master/screencast.mp4)
+ - Screen cast : [here](https://drive.google.com/file/d/1keQnyoQ5ba97AVE9hQ6O2xvQU3J0DR1z/view?usp=share_link)
 
  - Process book : [here](https://github.com/com-480-data-visualization/project-2023-datalcoholics/blob/master/Datalcoholics%20-%20Process%20book.pdf)
 
