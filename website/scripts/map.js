@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 var longitude = parseFloat(row.longitude);
 
                 if (isNaN(latitude) || isNaN(longitude)) {
-                    console.warn("Invalid coordinates for row");
+                    //console.warn("Invalid coordinates for row");
                     continue; // Skip this row and proceed to the next iteration
                 } else {
                     if ((latitude == 0) || (longitude == 0)){
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     var latitude = parseFloat(row.latitude);
                     var longitude = parseFloat(row.longitude);
                     if (isNaN(latitude) || isNaN(longitude)) {
-                        console.warn("Invalid coordinates for row");
+                        //console.warn("Invalid coordinates for row");
                         continue; // Skip this row and proceed to the next iteration
                     } else {
                         if (filter !== "no_filter"){
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var restIndex = parseInt(e.layer.options.id) + 2;
 
-        console.log(restaurantData.restaurant_name, restIndex);
+        //console.log(restaurantData.restaurant_name, restIndex);
 
         //Update the content of the card in the "restaurant-cards-container"
         updateRestaurantCard(restaurantData, restIndex);
@@ -471,8 +471,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var maxReviewsRestaurant = "";
 
         Object.keys(restaurantReviews).forEach(function(restaurantName) {
-            var numberOfReviews = parseInt(restaurantReviews[restaurantName], 10);
-
+            var numberOfReviews = parseFloat(restaurantReviews[restaurantName]);
             if (numberOfReviews > maxReviews) {
                 maxReviews = numberOfReviews;
                 maxReviewsRestaurant = restaurantName;
