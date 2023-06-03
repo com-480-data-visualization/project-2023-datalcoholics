@@ -109,7 +109,7 @@ We also plan to make the website responsive, but this may change if we do not ha
 - To run the website locally, open the `website` folder and run the following command : `python -m http.server`.
 - The `data_preprocessing.ipynb` file is the notebook where all the pre-computing was done for the statistics page.
 
-### Please find below links to our final project deliverables :
+# Please find below links to our final project deliverables :
 
  - Website : https://areisde.github.io/datalcoholics.io/
 
